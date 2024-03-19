@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def view_page(request, username):
+    """"""
+    return render(request, "pages/view_page.html")
