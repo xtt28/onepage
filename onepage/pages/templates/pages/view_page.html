@@ -2,18 +2,25 @@
 
 {% block title %}{{ page_data.user.username }}'s page{% endblock %}
 
-{% block head %}
+{% block meta %}
 <meta name="description" content="{{ page_data.description }}">
 {% endblock %}
 
 {% block content %}
-<h1>{{ page_data.user.username }}</h1>
-{{ page_data.description }}
-<ul>
-    {% for link in page_data.pagelink_set.all %}
-    <li>
-        <a href="{{ link.url }}" target="_blank">{{ link.url }}</a>
-    </li>
-    {% endfor %}
-</ul>
+<article>
+    <header>
+        <h1>{{ page_data.user.username }}</h1>
+        <p>{{ page_data.description }}</p>
+    </header>
+    <h2>Links</h2>
+    <ul>
+        {% for link in page_data.pagelink_set.all %}
+        <li>
+            <a href="{{ link.url }}" target="_blank">{{ link.url }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</article>
+
+
 {% endblock %}
