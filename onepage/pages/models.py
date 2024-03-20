@@ -47,4 +47,4 @@ class PageLink(models.Model):
     url = models.URLField()
 
     def __str__(self):
-        return f'Link to {self.url}'
+        return f"Link to {self.url}"
