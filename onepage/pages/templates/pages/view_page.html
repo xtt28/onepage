@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
-{% block title %}Viewing page{% endblock %}
+{% block title %}{{ page_data.user.username }}'s page{% endblock %}
 
 {% block content %}
-It works !
+<h1>{{ page_data.user.username }}</h1>
+{{ page_data.description }}
 {% endblock %}
