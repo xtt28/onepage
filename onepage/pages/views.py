@@ -1,14 +1,10 @@
-from django.http import HttpResponseNotFound
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Page
 
 
 def view_page(request, username):
     """Renders the profile page for the given user."""
-    page_data = Page.objects.filter(user__username=username).first()
-    print(page_data)
-    if not page_data:
-        return HttpResponseNotFound()
+    page_data = get_object_or_404(Page, user__username=username)
     return render(
         request,
         "pages/view_page.html",
