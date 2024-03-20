@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css">
     
     {% block meta %}{% endblock %}
@@ -11,6 +11,18 @@
 </head>
 <body>
     <main class="container">
+        <nav>
+            <ul>
+                <li><strong>OnePage</strong></li>
+            </ul>
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a href="#">Your profile</a></li>
+                {% else %}
+                <li><a href="#">Sign in</a></li>
+                {% endif %}
+            </ul>
+        </nav>
         {% block content %}{% endblock %}
     </main>
 </body>
