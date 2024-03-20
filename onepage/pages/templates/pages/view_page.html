@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
+
 {% block title %}{{ page_data.user.username }}'s page{% endblock %}
+
+{% block head %}
+<meta name="description" content="{{ page_data.description }}">
+{% endblock %}
 
 {% block content %}
 <h1>{{ page_data.user.username }}</h1>
