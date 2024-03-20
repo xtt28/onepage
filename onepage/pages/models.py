@@ -9,6 +9,9 @@ class Page(models.Model):
     user = models.OneToOneField(AppUser, on_delete=models.CASCADE)
     description = models.TextField()
 
+    def __str__(self):
+        return f"{self.user.username}'s page"
+
 
 class PageLink(models.Model):
     """Represents a link to a website on a page."""
@@ -42,3 +45,6 @@ class PageLink(models.Model):
         default=Platform.OTHER,
     )
     url = models.URLField()
+
+    def __str__(self):
+        return f'Link to {self.url}'
