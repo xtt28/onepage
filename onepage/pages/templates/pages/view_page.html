@@ -4,4 +4,11 @@
 {% block content %}
 <h1>{{ page_data.user.username }}</h1>
 {{ page_data.description }}
+<ul>
+    {% for link in page_data.pagelink_set.all %}
+    <li>
+        <a href="{{ link.url }}">{{ link.url }}</a>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
