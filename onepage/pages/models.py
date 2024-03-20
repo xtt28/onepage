@@ -38,7 +38,7 @@ class PageLink(models.Model):
     page = models.ForeignKey(Page, on_delete=models.CASCADE)
     platform = models.CharField(
         max_length=255,
-        choices=Platform,
+        choices=Platform.choices,
         default=Platform.OTHER,
     )
     url = models.URLField()
