@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css">
+    
     {% block meta %}{% endblock %}
     <title>{% block title %}{% endblock %} | OnePage</title>
 </head>
 <body>
-    {% block content %}{% endblock %}
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
 </body>
 </html>
