@@ -16,3 +16,8 @@ def view_page(request, username):
             "page_data": page_data,
         },
     )
+
+
+def edit_page(request):
+    """Renders a view that allows a user to modify their profile page."""
+    return render(request, "pages/edit_page.html")
