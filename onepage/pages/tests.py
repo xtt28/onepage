@@ -4,7 +4,7 @@ from .models import Page
 
 
 class ViewPageTestCase(TestCase):
-    TEMPLATE_NAME="pages/view_page.html"
+    TEMPLATE_NAME = "pages/view_page.html"
 
     def setUp(self):
         test_user = AppUser.objects.create(username="test_user", password="Unused")
