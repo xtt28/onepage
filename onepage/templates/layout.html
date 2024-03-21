@@ -20,7 +20,7 @@
             </ul>
             <ul>
                 {% if user.is_authenticated %}
-                <li><a href="#">Your profile</a></li>
+                <li><a href="{% url "dashboard" %}">Your profile</a></li>
                 {% else %}
                 <li><a href="#">Sign in</a></li>
                 {% endif %}
