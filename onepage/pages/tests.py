@@ -62,9 +62,9 @@ class EditPageTestCase(TestCase):
     def test_changes_record_values(self):
         """A POST request with form values should update the record data."""
         self.client.login(username="test_user", password="test_pass")
-        response = self.client.post(self.PATH, {
-            "description": "Updated description"
-        }, follow=True)
+        response = self.client.post(
+            self.PATH, {"description": "Updated description"}, follow=True
+        )
         self.assertRedirects(response, "/@test_user")
         self.assertIn("Updated description", str(response.content))
         self.assertNotIn("This is a test page description", str(response.content))
