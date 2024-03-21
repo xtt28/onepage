@@ -4,4 +4,9 @@
 
 {% block content %}
 <h1>Edit page</h1>
+<form action="/edit" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Save">
+</form>
 {% endblock %}
