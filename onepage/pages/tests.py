@@ -21,8 +21,8 @@ class ViewPageTestCase(TestCase):
         self.assertTemplateNotUsed(response, self.TEMPLATE_NAME)
 
     def test_renders_user_info(self):
-        """A request for a user's profile page renders the stored information
-        about them."""
+        """A request for a user's profile page should render the stored
+        information about them."""
         response = self.client.get("/@test_user")
 
         self.assertEqual(response.status_code, 200)
@@ -60,7 +60,7 @@ class EditPageTestCase(TestCase):
         self.assertIn("This is a test page description", str(response.content))
 
     def test_changes_record_values(self):
-        """A POST request with form values should update the record data."""
+        """A POST request with valid form values should update the record data."""
         self.client.login(username="test_user", password="test_pass")
         response = self.client.post(
             self.PATH, {"description": "Updated description"}, follow=True
