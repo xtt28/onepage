@@ -1,9 +1,16 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}{{ page_data.user.username }}'s page{% endblock %}
 
 {% block meta %}
 <meta name="description" content="{{ page_data.description }}">
+<script
+    src="{% static "pages/js/view_page.js" %}"
+    data-page="{{ request.build_absolute_uri }}"
+    defer
+>
+</script>
 {% endblock %}
 
 {% block content %}
