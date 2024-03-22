@@ -21,9 +21,19 @@
             <ul>
                 {% if user.is_authenticated %}
                 <li>
-                    <a href="{% url "dashboard" %}">
-                        @{{ user.username }}
-                    </a>
+                    <details class="dropdown">
+                        <summary role="button">
+                            @{{user.username}}
+                        </summary>
+                        <ul dir="rtl">
+                            <li>
+                                <a href="{% url "view_page" user.username %}">View your page</a>
+                            </li>
+                            <li>
+                                <a href="{% url "edit_page" %}">Edit your page</a>
+                            </li>
+                        </ul>
+                    </details>
                 </li>
                 {% else %}
                 <li><a href="#">Sign in</a></li>
