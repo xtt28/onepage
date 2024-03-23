@@ -1,9 +1,28 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}Sign in{% endblock %}
 
+{% block meta %}
+<link rel="stylesheet" href="{% static "registration/css/alerts.css" %}">
+{% endblock %}
+
 {% block content %}
-<h1>Sign in</h1>
+
+{% if form.errors %}
+<article>
+    Incorrect username or password.
+</article>
+{% endif %}
+
+<hgroup>
+    <h1>Sign in</h1>
+    {% if next %}
+    <p>
+        You must sign in to access this page.
+    </p>
+    {% endif %}
+</hgroup>
 <form action="{% url "login" %}" method="post">
     {% csrf_token %}
     <div>
