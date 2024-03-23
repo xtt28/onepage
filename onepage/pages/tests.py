@@ -1,6 +1,6 @@
 from django.test import TestCase
 from users.models import AppUser
-from .models import Page
+from .models import Page, PageLink
 
 
 class ViewPageTestCase(TestCase):
@@ -68,3 +68,33 @@ class EditPageTestCase(TestCase):
         self.assertRedirects(response, "/@test_user")
         self.assertIn("Updated description", str(response.content))
         self.assertNotIn("This is a test page description", str(response.content))
+
+
+class PageLinkTestCase(TestCase):
+    PATH = "/edit/links"
+
+    def setUp(self):
+        test_user = AppUser.objects.create(username="test_user")
+        test_user.set_password("test_pass")
+        test_user.save()
+        Page.objects.create(
+            user=test_user, description="Test page for links"
+        )
+
+    def test_handles_unauthenticated_user(self):
+        """A request to create a link by an authenticated user should redirect
+        to the signin page."""
+        response = self.client.get(self.PATH)
+        self.assertNotEqual(200, response.status_code)
+
+    def test_changes_record_values(self):
+        """A POST request with valid form values should update the record data."""
+        self.client.login(username="test_user", password="test_pass")
+        response = self.client.post(
+            self.PATH, {"url": "https://github.com"}, follow=True
+        )
+        self.assertEqual(200, response.status_code)
+
+        link = PageLink.objects.filter(page__user__username="test_user").first()
+        self.assertIsNotNone(link)
+        self.assertEqual(link.url, "https://github.com")
