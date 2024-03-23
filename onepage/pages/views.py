@@ -38,7 +38,7 @@ def edit_page(request):
     """If the request method is GET, renders a view that allows a user to modify
     their profile page. If the method is POST, accepts a PageForm to update the
     user's profile page."""
-    page = Page.objects.get(user=request.user)
+    page, _ = Page.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
         form = PageForm(request.POST, instance=page)
