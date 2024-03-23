@@ -133,3 +133,5 @@ STATICFILES_DIRS = [
     "static",
     BASE_DIR / "static",
 ]
+
+ACCOUNT_ACTIVATION_DAYS = 7
