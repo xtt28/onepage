@@ -7,7 +7,7 @@ class Page(models.Model):
     """Represents a user's profile page."""
 
     user = models.OneToOneField(AppUser, on_delete=models.CASCADE)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return f"{self.user.username}'s page"
