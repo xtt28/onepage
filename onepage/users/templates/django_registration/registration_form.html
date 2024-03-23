@@ -12,11 +12,6 @@
 
 <hgroup>
     <h1>Register</h1>
-    {% if next %}
-    <p>
-        You must sign in to access this page.
-    </p>
-    {% endif %}
 </hgroup>
 <form action="{% url "login" %}" method="post">
     {% csrf_token %}
