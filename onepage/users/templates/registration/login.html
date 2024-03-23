@@ -6,7 +6,9 @@
 
 {% if form.errors %}
 <article>
-    Incorrect username or password.
+    {% for key, value in form.errors.items %}
+    {{ value }}
+    {% endfor %}
 </article>
 {% endif %}
 
