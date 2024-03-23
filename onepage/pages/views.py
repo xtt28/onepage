@@ -1,7 +1,13 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponseNotAllowed, HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.http import (
+    HttpResponseRedirect,
+    HttpResponseNotAllowed,
+    HttpResponseNotFound,
+    HttpResponse,
+)
+from django.shortcuts import render
 from django import forms
+from users.models import AppUser
 from .models import Page, PageLink
 
 
@@ -22,13 +28,22 @@ class PageLinkForm(forms.ModelForm):
 
 
 def view_page(request, username):
-    """Renders the profile page for the given user."""
-    page_data = get_object_or_404(Page, user__username=username)
+    """Renders the profile page for the given user. If the user exists but has
+    no profile page, it will be created and then rendered."""
+    page = Page.objects.filter(user__username=username).first()
+    if not page:
+        creator = AppUser.objects.filter(username=username)
+        if creator.exists():
+            page = Page.objects.create(user=creator.first())
+            page.save()
+        else:
+            return HttpResponseNotFound()
+
     return render(
         request,
         "pages/view_page.html",
         {
-            "page_data": page_data,
+            "page_data": page,
         },
     )
 
