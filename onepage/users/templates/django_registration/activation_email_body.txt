@@ -2,7 +2,7 @@
 
 Please click on the below link to complete your registration for OnePage.
 
-{{ request.scheme }}://{{ request.get_host }}{% url "registration_activate" activation_key %}
+{{ request.scheme }}://{{ request.get_host }}{% url "django_registration_activate" activation_key %}
 
 You are receiving this notice because a user attempted to register for OnePage
 with this email address. If you did not register for OnePage, you do not need
