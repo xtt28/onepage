@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}Your account couldn't be activated{% endblock %}
+
+{% block content %}
+
+<hgroup>
+    <h1>Your account couldn't be activated</h1>
+    <p>
+        {% if code == "already_activated" %}
+        Your account is already activated.
+        {% elif code == "bad_username" or code == "invalid_key" %}
+        The activation key is invalid.
+        {% elif code == "expired" %}
+        Your activation link has expired.
+        {% endif %}
+    </p>
+</hgroup>
+{% endblock %}
