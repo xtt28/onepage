@@ -10,16 +10,24 @@
     <input type="submit" value="Save">
 </form>
 
-<h2>Links</h2>
-{% for link in form.instance.pagelink_set.all %}
-<article>
-    {{ link.url }}
-    <footer>
-        <button class="secondary">
-            Delete
-        </button>
-    </footer>
-</article>
-{% endfor %}
+<section>
+    <h2>Links</h2>
+    {% for link in form.instance.pagelink_set.all %}
+    <article>
+        {{ link.url }}
+        <footer>
+            <button class="secondary">
+                Delete
+            </button>
+        </footer>
+    </article>
+    {% endfor %}
+    <form action="/edit/links" method="post">
+        {% csrf_token %}
+        {{ link_form }}
+        <input type="submit" value="Create">
+    </form>
+</section>
+
 
 {% endblock %}
