@@ -77,9 +77,7 @@ class PageLinkTestCase(TestCase):
         test_user = AppUser.objects.create(username="test_user")
         test_user.set_password("test_pass")
         test_user.save()
-        Page.objects.create(
-            user=test_user, description="Test page for links"
-        )
+        Page.objects.create(user=test_user, description="Test page for links")
 
     def test_handles_unauthenticated_user(self):
         """A request to create a link by an authenticated user should redirect
