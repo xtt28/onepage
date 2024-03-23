@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>Edit page</h1>
-<form action="/edit" method="post">
+<form action="{% url "edit_page" %}" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Save">
@@ -22,7 +22,7 @@
         </footer>
     </article>
     {% endfor %}
-    <form action="/edit/links" method="post">
+    <form action="{% url "create_link" %}" method="post">
         {% csrf_token %}
         {{ link_form }}
         <input type="submit" value="Create">
