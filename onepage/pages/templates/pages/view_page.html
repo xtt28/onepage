@@ -23,7 +23,8 @@
     <ul>
         {% for link in page_data.pagelink_set.all %}
         <li>
-            <a href="{{ link.url }}" target="_blank">{{ link.url }}</a>
+            {{ link.get_platform_display }}:
+            <a href="{{ link.get_profile_link }}" target="_blank">{{ link.value }}</a>
         </li>
         {% endfor %}
     </ul>
