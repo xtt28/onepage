@@ -23,6 +23,7 @@
         </footer>
     </article>
     {% endfor %}
+    <h3>Add a link</h3>
     <form action="{% url "create_link" %}" method="post">
         {% csrf_token %}
         {{ link_form }}
