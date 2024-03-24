@@ -29,7 +29,6 @@ class PageLink(models.Model):
         X = "x", _("X")
         FACEBOOK = "facebook", _("Facebook")
         INSTAGRAM = "instagram", _("Instagram")
-        LINKEDIN = "linkedin", _("LinkedIn")
         SPOTIFY = "spotify", _("Spotify Artist ID")
         DISCORD = "discord", _("Discord Invite ID")
         TELEGRAM = "telegram", _("Telegram")
