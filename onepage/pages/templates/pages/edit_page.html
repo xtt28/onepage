@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>Edit page</h1>
-<form action="{% url "edit_page" %}" method="post">
+<form hx-post="{% url "edit_page" %}">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Save">
@@ -12,19 +12,19 @@
 
 <section>
     <h2>Links</h2>
-    {% for link in form.instance.pagelink_set.all %}
-    <article>
-        {{ link.get_platform_display }}:
-        <a href="{{ link.get_profile_link }}" target="blank">{{ link.value }}</a>
-        <footer>
-            <button class="secondary">
-                Delete
-            </button>
-        </footer>
-    </article>
-    {% endfor %}
+    <div id="links-list">
+        {% for link in form.instance.pagelink_set.all %}
+        
+        {% include "pages/page_link_edit_view.html" %}
+        {% endfor %}
+    </div>
+    
     <h3>Add a link</h3>
-    <form action="{% url "create_link" %}" method="post">
+    <form
+        hx-post="{% url "create_link" %}"
+        hx-target="#links-list"
+        hx-swap="beforeend"
+    >
         {% csrf_token %}
         {{ link_form }}
         <input type="submit" value="Create">

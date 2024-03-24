@@ -81,6 +81,6 @@ def create_link(request):
     form = PageLinkForm(request.POST, instance=new_link)
     if form.is_valid():
         form.save()
-        return HttpResponse("Link added")
+        return render(request, "pages/page_link_edit_view.html", {"link": new_link})
     else:
         return HttpResponse(form.errors.as_text())
