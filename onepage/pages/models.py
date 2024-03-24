@@ -46,7 +46,7 @@ class PageLink(models.Model):
         choices=Platform.choices,
         default=Platform.OTHER,
     )
-    value = models.TextField()
+    value = models.CharField(max_length=1000)
 
     def get_profile_link(self):
         safe_value = quote_plus(self.value)
