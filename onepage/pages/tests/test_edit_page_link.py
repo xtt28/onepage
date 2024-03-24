@@ -5,12 +5,17 @@ from pages.models import Page, PageLink
 
 class PageLinkTestCase(TestCase):
     PATH = "/edit/links"
+    DELETE_PATH = PATH + "/delete/"
 
     def setUp(self):
         test_user = AppUser.objects.create(username="test_user")
         test_user.set_password("test_pass")
         test_user.save()
-        Page.objects.create(user=test_user, description="Test page for links")
+        test_user_2 = AppUser.objects.create(username="test_user_2")
+        test_user_2.set_password("test_pass")
+        test_user_2.save()
+
+        self.test_page = Page.objects.create(user=test_user, description="Test page for links")
 
     def test_handles_unauthenticated_user(self):
         """A request to create a link by an authenticated user should redirect
@@ -47,3 +52,30 @@ class PageLinkTestCase(TestCase):
         self.assertEqual(
             link.get_profile_link(), "https://github.com/xtt28%2Frepositories"
         )
+
+    def test_deletes_link(self):
+        """A DELETE request to delete a link on the user's page should delete the
+        link."""
+        self.client.login(username="test_user", password="test_pass")
+        PageLink.objects.create(pk=1, page=self.test_page)
+        response = self.client.delete(self.DELETE_PATH + "1")
+        self.assertEqual(200, response.status_code)
+        self.assertEqual(0, PageLink.objects.filter(pk=1).count())
+
+    def test_not_deletes_other_user_link(self):
+        """A DELETE request to delete a link on another user's page should not
+        delete the link."""
+        self.client.login(username="test_user_2", password="test_pass")
+        PageLink.objects.create(pk=1, page=self.test_page)
+        response = self.client.delete(self.DELETE_PATH + "1")
+        self.assertNotEqual(200, response.status_code)
+        self.assertEqual(1, PageLink.objects.filter(pk=1).count())
+
+    def test_not_deletes_link_unauthenticated(self):
+        """A DELETE request to delete any link should fail if the user is not
+        authenticated."""
+        PageLink.objects.create(pk=1, page=self.test_page)
+        response = self.client.delete(self.DELETE_PATH + "1")
+        self.assertNotEqual(200, response.status_code)
+        self.assertEqual(1, PageLink.objects.filter(pk=1).count())
+
