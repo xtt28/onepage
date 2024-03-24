@@ -26,6 +26,8 @@
             {{ link.get_platform_display }}:
             <a href="{{ link.get_profile_link }}" target="_blank" nofollow>{{ link.value }}</a>
         </li>
+        {% empty %}
+        <li>There are no links yet.</li>
         {% endfor %}
     </ul>
     <footer>
