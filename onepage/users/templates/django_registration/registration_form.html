@@ -13,8 +13,7 @@
 <hgroup>
     <h1>Register</h1>
 </hgroup>
-<form action="{% url "django_registration_register" %}" method="post">
-    {% csrf_token %}
+<form hx-post="{% url "django_registration_register" %}">
     {{ form }}
 
     <input type="submit" value="Register">
