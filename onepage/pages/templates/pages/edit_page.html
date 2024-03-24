@@ -14,7 +14,8 @@
     <h2>Links</h2>
     {% for link in form.instance.pagelink_set.all %}
     <article>
-        {{ link.url }}
+        {{ link.get_platform_display }}:
+        <a href="{{ link.get_profile_link }}" target="blank">{{ link.value }}</a>
         <footer>
             <button class="secondary">
                 Delete
