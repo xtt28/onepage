@@ -24,7 +24,7 @@ class PageLinkForm(forms.ModelForm):
 
     class Meta:
         model = PageLink
-        fields = ["url"]
+        fields = ["platform", "value"]
 
 
 def view_page(request, username):
