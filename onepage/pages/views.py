@@ -3,11 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import (
     HttpResponse,
     HttpResponseForbidden,
-    HttpResponseNotAllowed,
     HttpResponseNotFound,
     HttpResponseRedirect,
 )
 from django.shortcuts import render
+from django.views.decorators.http import require_http_methods
 from users.models import AppUser
 
 from .models import Page, PageLink
@@ -29,6 +29,7 @@ class PageLinkForm(forms.ModelForm):
         fields = ["platform", "value"]
 
 
+@require_http_methods(["GET"])
 def view_page(request, username):
     """Renders the profile page for the given user. If the user exists but has
     no profile page, it will be created and then rendered."""
@@ -51,6 +52,7 @@ def view_page(request, username):
 
 
 @login_required
+@require_http_methods(["GET", "POST"])
 def edit_page(request):
     """If the request method is GET, renders a view that allows a user to modify
     their profile page. If the method is POST, accepts a PageForm to update the
@@ -71,12 +73,10 @@ def edit_page(request):
 
 
 @login_required
+@require_http_methods(["POST"])
 def create_link(request):
     """Creates a link for the user's profile page with the data from the POST
     request."""
-    if request.method != "POST":
-        return HttpResponseNotAllowed(permitted_methods=["POST"])
-
     user_page = Page.objects.get(user=request.user)
     new_link = PageLink(page_id=user_page.pk)
 
@@ -89,11 +89,9 @@ def create_link(request):
 
 
 @login_required
+@require_http_methods(["DELETE"])
 def delete_link(request, link_id):
     """Deletes the link with the ID specified in the path parameter."""
-    if request.method != "DELETE":
-        return HttpResponseNotAllowed(permitted_methods=["DELETE"])
-
     link = PageLink.objects.get(pk=link_id)
     if link.page.user != request.user:
         return HttpResponseForbidden()
