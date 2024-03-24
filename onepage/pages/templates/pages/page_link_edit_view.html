@@ -1,8 +1,13 @@
-<article>
+<article id="link-{{ link.pk }}">
     {{ link.get_platform_display }}:
     <a href="{{ link.get_profile_link }}" target="blank">{{ link.value }}</a>
     <footer>
-        <button class="secondary">
+        <button
+            class="secondary"
+            hx-delete="{% url "delete_link" link.pk %}"
+            hx-target="#link-{{ link.pk }}"
+            hx-swap="delete"
+        >
             Delete
         </button>
     </footer>

@@ -1,13 +1,15 @@
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.http import (
-    HttpResponseRedirect,
+    HttpResponse,
+    HttpResponseForbidden,
     HttpResponseNotAllowed,
     HttpResponseNotFound,
-    HttpResponse,
+    HttpResponseRedirect,
 )
 from django.shortcuts import render
-from django import forms
 from users.models import AppUser
+
 from .models import Page, PageLink
 
 
@@ -84,3 +86,17 @@ def create_link(request):
         return render(request, "pages/page_link_edit_view.html", {"link": new_link})
     else:
         return HttpResponse(form.errors.as_text())
+
+
+@login_required
+def delete_link(request, link_id):
+    """Deletes the link with the ID specified in the path parameter."""
+    if request.method != "DELETE":
+        return HttpResponseNotAllowed(permitted_methods=["DELETE"])
+
+    link = PageLink.objects.get(pk=link_id)
+    if link.page.user != request.user:
+        return HttpResponseForbidden()
+
+    link.delete()
+    return HttpResponse()
