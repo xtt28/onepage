@@ -19,6 +19,12 @@
         You must sign in to access this page.
     </p>
     {% endif %}
+    <p>
+        Don't have an account?
+        <a href="{% url "django_registration_register" %}">
+            Create one here.
+        </a>
+    </p>
 </hgroup>
 <form method="post">
     {% csrf_token %}
