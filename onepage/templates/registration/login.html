@@ -20,7 +20,8 @@
     </p>
     {% endif %}
 </hgroup>
-<form hx-post="{% url "login" %}">
+<form method="post">
+    {% csrf_token %}
     <div>
         {{ form.username.label_tag }}
         {{ form.username }}
