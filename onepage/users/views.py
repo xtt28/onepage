@@ -1,3 +1,4 @@
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET
 from django.shortcuts import redirect, render
@@ -24,4 +25,11 @@ def delete_user(request):
 def delete_final(request):
     """Deletes the user's account permanently."""
     request.user.delete()
+    return redirect("login")
+
+
+@login_required
+def logout_view(request):
+    """Logs the user out of their active session."""
+    logout(request)
     return redirect("login")
