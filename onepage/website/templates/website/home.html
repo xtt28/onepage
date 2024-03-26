@@ -2,7 +2,56 @@
 
 {% block title %}Home{% endblock %}
 
+{% block meta %}
+<meta name="description" content="Amplifying the voices of diverse creators worldwide: build your online presence with one page for all of your profiles. Grow your small business or social media page with your own, personalized platform.">
+{% endblock %}
+
 {% block content %}
 
-<h1>Welcome to OnePage</h1>
+<section>
+    <hgroup>
+        <h1>Your whole online presence, in one page.</h1>
+        <p>Grow your small business or social media page with one page for all of your
+        online profiles.<p>
+    </hgroup>
+    
+    <div>
+        <a href="{% url "django_registration_register" %}" role="button">
+            Get started
+        </a>
+    </div>
+</section>
+
+
+<section>
+    <h2>What is OnePage?</h2>
+    <p>
+        OnePage is a platform that allows you to combine all of your online links
+        into one page. 
+    </p>
+</section>
+
+<section>
+    <h2>What are the features of OnePage?</h2>
+    <ul>
+        <li>
+            Completely free: use the full feature set without subscriptions or
+            paywalls
+        </li>
+        <li>
+            Support for multiple online platforms: TikTok, Instagram, X (Twitter)
+            and more
+        </li>
+        <li>
+            Support for linking to your own website: endless possibilities for
+            individuals and businesses alike
+        </li>
+        <li>
+            Quick and easy publishing: get your page out to the world moments
+            after signing up
+        </li>
+    </ul>
+</section>
+
+
 {% endblock %}
