@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}User dashboard{% endblock %}
+
+{% block content %}
+
+<hgroup>
+    <h1>User dashboard</h1>
+    <p>
+        Configure settings about your profile here.
+    </p>
+</hgroup>
+<ul>
+    <li>
+        <a href="{% url "password_change" %}">Change your password</a>
+        <br>
+        Change the password that you use to log in to OnePage.
+    </li>
+    <li>
+        <a href="#">Log out</a>
+        <br>
+        Clear your active session and log out of OnePage.
+    </li>
+</ul>
+{% endblock %}
