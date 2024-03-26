@@ -7,7 +7,7 @@ from django.http import (
     HttpResponseRedirect,
 )
 from django.shortcuts import render
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from users.models import AppUser
 
 from .models import Page, PageLink
@@ -29,7 +29,7 @@ class PageLinkForm(forms.ModelForm):
         fields = ["platform", "value"]
 
 
-@require_http_methods(["GET"])
+@require_GET
 def view_page(request, username):
     """Renders the profile page for the given user. If the user exists but has
     no profile page, it will be created and then rendered."""
@@ -73,7 +73,7 @@ def edit_page(request):
 
 
 @login_required
-@require_http_methods(["POST"])
+@require_POST
 def create_link(request):
     """Creates a link for the user's profile page with the data from the POST
     request."""
