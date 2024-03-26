@@ -12,6 +12,16 @@
 </hgroup>
 <ul>
     <li>
+        <a href="{% url "view_page" user.username %}">View your page</a>
+        <br>
+        View and share your page as it appears publicly.
+    </li>
+    <li>
+        <a href="{% url "edit_page" %}">Edit your page</a>
+        <br>
+        Change the text and links on your profile page.
+    </li>
+    <li>
         <a href="{% url "password_change" %}">Change your password</a>
         <br>
         Change the password that you use to log in to OnePage.
