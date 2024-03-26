@@ -15,7 +15,9 @@ class PageLinkTestCase(TestCase):
         test_user_2.set_password("test_pass")
         test_user_2.save()
 
-        self.test_page = Page.objects.create(user=test_user, description="Test page for links")
+        self.test_page = Page.objects.create(
+            user=test_user, description="Test page for links"
+        )
 
     def test_handles_unauthenticated_user(self):
         """A request to create a link by an authenticated user should redirect
@@ -78,4 +80,3 @@ class PageLinkTestCase(TestCase):
         response = self.client.delete(self.DELETE_PATH + "1")
         self.assertNotEqual(200, response.status_code)
         self.assertEqual(1, PageLink.objects.filter(pk=1).count())
-
