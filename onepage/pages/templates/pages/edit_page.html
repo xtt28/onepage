@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>Edit page</h1>
-<form hx-post="{% url "edit_page" %}">
+<form hx-post="{% url "edit_page" %}" hx-swap="none">
     {{ form }}
     <input type="submit" value="Save">
 </form>
