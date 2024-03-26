@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}Delete your account{% endblock %}
+
+{% block content %}
+
+<hgroup>
+    <h1>Are you sure you'd like to delete your account?</h1>
+    <p>
+        You're about to delete your account and pages. This action is permanent.
+    </p>
+</hgroup>
+<div>
+    <a href="{% url "delete_final" %}" role="button">
+        Yes, I'm sure
+    </a>
+    <a href="{% url "user_settings" %}" role="button" class="secondary">
+        No, take me back
+    </a>
+</div>
+{% endblock %}
