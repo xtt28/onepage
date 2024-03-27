@@ -117,3 +117,14 @@ for detailed instructions on deployment. You can run an automated check with:
 
 -   [Django](https://www.djangoproject.com/)
 -   [SQLite](https://sqlite.org)
+
+## Contributing
+
+Contributions are always welcome. Please:
+
+1. Write tests for your code.
+2. Format your code with `black`.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
