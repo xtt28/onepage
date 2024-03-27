@@ -71,3 +71,11 @@ cd onepage
 ```
 
 ### Production
+
+#### Preparing for deployment
+Please refer to the Django [deployment checklist](https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/)
+for detailed instructions on deployment. Additionally:
+```shell
+# Automated pre-deployment check
+./manage.py check --deploy
+```
