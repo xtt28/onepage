@@ -72,9 +72,15 @@ cd onepage
 
 ### Production
 
+#### Collect static files
+```shell
+# Collect static files into the prod_static directory
+./manage.py collectstatic
+```
+
 #### Preparing for deployment
 Please refer to the Django [deployment checklist](https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/)
-for detailed instructions on deployment. Additionally:
+for detailed instructions on deployment. You can run an automated check with:
 ```shell
 # Automated pre-deployment check
 ./manage.py check --deploy
