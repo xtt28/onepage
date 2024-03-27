@@ -72,6 +72,14 @@ cd onepage
 
 ### Production
 
+#### Set environment variables
+By default, the project uses the `SECRET_KEY` environment variable for the
+Django secret key. Set it with:
+```shell
+# Set SECRET_KEY environment variable
+export SECRET_KEY=your_key
+```
+
 #### Collect static files
 ```shell
 # Collect static files into the prod_static directory
