@@ -105,3 +105,15 @@ for detailed instructions on deployment. You can run an automated check with:
 # Automated pre-deployment check
 ./manage.py check --deploy
 ```
+
+## Technology
+
+### Frontend
+
+-   [Pico CSS](https://picocss.com/)
+-   [htmx](https://htmx.org)
+
+### Backend
+
+-   [Django](https://www.djangoproject.com/)
+-   [SQLite](https://sqlite.org)
