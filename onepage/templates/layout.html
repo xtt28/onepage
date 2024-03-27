@@ -14,7 +14,7 @@
     {% block meta %}{% endblock %}
     <title>{% block title %}{% endblock %} | OnePage</title>
 </head>
-<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-boost="true">
     <main class="container">
         <nav>
             <ul>
