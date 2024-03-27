@@ -140,3 +140,5 @@ ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 LOGIN_REDIRECT_URL = "/you"
+
+STATIC_ROOT = BASE_DIR / "prod_static"
